@@ -1,4 +1,5 @@
-安装mysqlreplication库: pip install mysql-replication
+安装mysqlreplication库: 
+pip install mysql-replication
 
 pymysql = 0.9.3
 
