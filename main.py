@@ -44,7 +44,7 @@ class Binlog2sql(object):
             # 'mysql-bin.000001' -> '000001'
             binlog2i = lambda x: x.split('.')[1]
             for binary in bin_index:
-                if binlog2i(self.start_file) <= binlog2i(binary) < binlog2i(self.end_file):
+                if binlog2i(self.start_file) <= binlog2i(binary) <= binlog2i(self.end_file):
                     self.binlogList.append(binary)
             # 获取server_id
             cursor.execute('SELECT @@server_id')
@@ -64,13 +64,19 @@ class Binlog2sql(object):
                     first = col[0].split(' ')
                     # print(first)
                     if first[0] == 'use':
-                        self.databaseList.append(col[0])
-                        self.sqlListHis.append(col[1])
+                        sql = col[1].split(' ')
+                        # print(sql)
+                        if sql[1] != 'flush':
+                            self.databaseList.append(col[0])
+                            self.sqlListHis.append(col[1])
                     elif first[0] == 'drop':
                         self.databaseList.append(col[0])
                         self.sqlListHis.append('')
-            # print(self.databaseList)
-            # print(self.sqlListHis)
+                    elif first[0] == 'create':
+                        self.databaseList.append(col[0])
+                        self.sqlListHis.append('')
+            print(self.databaseList)
+            print(self.sqlListHis)
 
 
     def process_binlog(self):
