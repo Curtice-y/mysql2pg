@@ -3,6 +3,7 @@ import pymysql
 from pymysqlreplication import BinLogStreamReader
 from method import command_line_args
 import threading
+from protolbuf import analy
 
 class Binlog2sql(object):
     def __init__(self, connection_settings, start_file=None, end_file=None):
@@ -51,7 +52,7 @@ class Binlog2sql(object):
             self.server_id = cursor.fetchone()[0]
             if not self.server_id:
                 raise ValueError('missing server_id in %s:%s' %(self.conn_setting['host'], self.conn_setting['port']))
-            print(self.binlogList)
+            # print(self.binlogList)
 
             self.databaseList = []
             self.sqlListHis = []
@@ -75,8 +76,12 @@ class Binlog2sql(object):
                     elif first[0] == 'create':
                         self.databaseList.append(col[0])
                         self.sqlListHis.append('')
-            print(self.databaseList)
-            print(self.sqlListHis)
+            # print(self.databaseList)
+            # print(self.sqlListHis)
+            for database, sql in zip(self.databaseList, self.sqlListHis):
+                # print(database)
+                # print(sql)
+                analy(database, sql)
 
 
     def process_binlog(self):

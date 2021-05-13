@@ -1,13 +1,21 @@
-安装mysqlreplication库: 
+需要安装mysqlreplication库: 
+
+```
 pip install mysql-replication
+```
 
-pymysql = 0.9.3
+pymysql版本为0.9.3
 
-usage:python main.py [--start-file START_FILE] [--stop-file END_FILE] [--help]
-               [-h HOST] [-u USER] [-p [PASSWORD [PASSWORD ...]]] [-P PORT]
+```
+pymysql=0.9.3
+```
 
+使用: 
+
+    usage:python main.py [--start-file START_FILE] [--stop-file END_FILE] [--help]
+                   [-h HOST] [-u USER] [-p [PASSWORD [PASSWORD ...]]] [-P PORT]
     Parse MySQL binlog to SQL you want
-
+    
     optional arguments:
     --start-file START_FILE
                         Start binlog file to be parsed (required)
