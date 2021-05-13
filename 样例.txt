@@ -1,0 +1,26 @@
+create database test;
+
+(use test;)
+
+create table if not exists `tt` (
+          `id` int(10) unsigned not null auto_increment,
+          `name` varchar(16) not null,
+          `sex` enum('m','w') not null default 'm',
+          `age` tinyint(3) unsigned not null,
+          `classid` char(6) default null,
+          primary key (`id`)
+         )engine=InnoDB default charset=utf8;
+
+insert into tt(`name`,`sex`,`age`,`classid`) 
+values ('yiyi','w',20,'cls1'),('xiaoer','m',22,'cls3');
+
+insert into tt
+values (3,'zhangsan','w',21,'cls5'),(4,'lisi','m',20,'cls4'),(5,'wangwu','w',26,'cls6');
+
+update tt set name='李四' where id=4;
+
+delete from tt where name='yiyi';
+
+drop table tt;
+
+drop database test;

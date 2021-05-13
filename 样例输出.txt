@@ -1,0 +1,110 @@
+command: "create database"
+database: "test"
+
+command: "create table"
+database: "`test`"
+table: "tt"
+defines: "`id` int(10) unsigned not null auto_increment"
+defines: "`name` varchar(16) not null"
+defines: "`sex` enum(\'m\',\'w\') not null default \'m\'"
+defines: "`age` tinyint(3) unsigned not null"
+defines: "`classid` char(6) default null"
+defines: "primary key (`id`)"
+
+command: "insert"
+database: "`test`"
+table: "tt"
+attribute {
+  key: "name"
+  value: "yiyi"
+}
+attribute {
+  key: "sex"
+  value: "w"
+}
+attribute {
+  key: "age"
+  value: "20"
+}
+attribute {
+  key: "classid"
+  value: "cls1"
+}
+
+command: "insert"
+database: "`test`"
+table: "tt"
+attribute {
+  key: "name"
+  value: "xiaoer"
+}
+attribute {
+  key: "sex"
+  value: "m"
+}
+attribute {
+  key: "age"
+  value: "22"
+}
+attribute {
+  key: "classid"
+  value: "cls3"
+}
+
+command: "insert"
+database: "`test`"
+table: "tt"
+values: "3"
+values: "zhangsan"
+values: "w"
+values: "21"
+values: "cls5"
+
+command: "insert"
+database: "`test`"
+table: "tt"
+values: "4"
+values: "lisi"
+values: "m"
+values: "20"
+values: "cls4"
+
+command: "insert"
+database: "`test`"
+table: "tt"
+values: "5"
+values: "wangwu"
+values: "w"
+values: "26"
+values: "cls6"
+
+command: "update"
+database: "`test`"
+table: "tt"
+attribute {
+  key: "name"
+}
+where {
+  limits {
+    left: "id"
+    operand: "="
+    right: "4"
+  }
+}
+
+command: "delete"
+database: "`test`"
+table: "tt"
+where {
+  limits {
+    left: "name"
+    operand: "="
+    right: "yiyi"
+  }
+}
+
+command: "drop table"
+database: "`test`"
+
+command: "drop database"
+database: "test"

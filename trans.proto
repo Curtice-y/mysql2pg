@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+message key_value{ 
+    string key = 1;
+    string value = 2;
+}
+
+message insertMess{
+    string command = 1;
+    string database = 2;
+    string table = 3;
+    repeated string values= 4;
+}
+
+message insertMessWithAttr{
+    string command = 1;
+    string database = 2;
+    string table = 3;
+    repeated key_value attribute = 4;
+}
+
+message condition{
+    string left = 1;
+    string operand = 2;
+    string right = 3;
+}
+
+message where{
+    repeated condition limits= 1;
+    repeated string logic = 2;
+}
+
+message updateMess{
+    string command = 1;
+    string database = 2;
+    string table = 3;
+    repeated key_value attribute = 4;
+    where where = 5;
+}
+
+message deleteMess{
+    string command = 1;
+    string database = 2;
+    string table = 3;
+    where where = 4; 
+}
+
+
+message createTableMess{
+    string command = 1;
+    string database = 2;
+    string table = 3;
+    repeated string defines= 4;
+}
+
+message createDBMess{
+    string command = 1;
+    string database = 2;
+}
+
+message dropTableMess{
+    string command = 1;
+    string database = 2;
+    repeated string table = 3;
+}
+
+message dropDBMess{
+    string command = 1;
+    string database = 2;
+}
