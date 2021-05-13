@@ -11,7 +11,7 @@ defines: "`age` tinyint(3) unsigned not null"
 defines: "`classid` char(6) default null"
 defines: "primary key (`id`)"
 
-command: "insert"
+command: "insertAttr"
 database: "`test`"
 table: "tt"
 attribute {
@@ -31,7 +31,7 @@ attribute {
   value: "cls1"
 }
 
-command: "insert"
+command: "insertAttr"
 database: "`test`"
 table: "tt"
 attribute {
