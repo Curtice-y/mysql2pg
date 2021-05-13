@@ -37,7 +37,7 @@ def insertAnaly(sql, database):
             attributes[i] = format_str(attributes[i])
         for i in sql_one:
             message = trans_pb2.insertMessWithAttr()
-            message.command = 'insert'
+            message.command = 'insertAttr'
             message.database = database
             message.table = table
             values = re.split(',', i)
