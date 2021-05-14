@@ -30,36 +30,38 @@ def insertAnaly(sql, database):
     # get table name
     table = re.search(r'insert into[\s]*([\w|_]*)', sql_split[0]).group(1).strip()
     attributes = re.search(r'\((.*)\)', sql_split[0])
-    sql_one = re.findall(r'\(([^\)]*)\)', sql_split[1])
+    sql_split[1] = sql_split[1].replace("(", "")
+    sql_split[1] = sql_split[1].replace(")", "")
+    sql_split[1] = sql_split[1].strip()
     if attributes:
         attributes = attributes.group(1).split(',')
         for i in range(len(attributes)):
             attributes[i] = format_str(attributes[i])
-        for i in sql_one:
-            message = trans_pb2.insertMessWithAttr()
-            message.command = 'insertAttr'
-            message.database = database
-            message.table = table
-            values = re.split(',', i)
-            for j in range(len(values)):
-                if re.search('\'', values[j]):
-                    values[j] = format_str(values[j])
-                temp = message.attribute.add()
-                temp.key = attributes[j]
-                temp.value = values[j]
-            send(message)
+        message = trans_pb2.insertMessWithAttr()
+        message.sql = sql.strip()
+        message.command = 'insertAttr'
+        message.database = database
+        message.table = table
+        values = re.split(',', sql_split[1])
+        for j in range(len(values)):
+            if re.search('\'', values[j]):
+                values[j] = format_str(values[j])
+            temp = message.attribute.add()
+            temp.key = attributes[j]
+            temp.value = values[j]
     else:
-        for i in sql_one:
-            message = trans_pb2.insertMess()
-            message.command = 'insert'
-            message.database = database
-            message.table = table
-            values = re.split(',', i)
-            for j in range(len(values)):
-                if re.search('\'', values[j]):
-                    values[j] = format_str(values[j])
-                message.values.append(values[j])
-            send(message)
+        message = trans_pb2.insertMess()
+        message.sql = sql.strip()
+        message.command = 'insert'
+        message.database = database
+        message.table = table
+        values = re.split(',', sql_split[1])
+        for j in range(len(values)):
+            if re.search('\'', values[j]):
+                values[j] = format_str(values[j])
+            message.values.append(values[j])
+    send(message)
+
 
 def whereAnaly(sql, message):
     sql_limit = sql.split('where')[1]
@@ -77,15 +79,14 @@ def whereAnaly(sql, message):
         limit.right = format_str(limit.right)
 
 
-
 def updateAnaly(sql, database):
     sql_split = re.split('set', sql)
     table = re.search(r'update\s*([\w|_]*)', sql_split[0]).group(1).strip()
     message = trans_pb2.updateMess()
+    message.sql = sql.strip()
     message.command = 'update'
     message.database = database
     message.table = table
-
     sql_one = re.split(',', sql_split[1])
     for i in sql_one:
         temp = message.attribute.add()
@@ -102,6 +103,7 @@ def updateAnaly(sql, database):
 def deleteAnaly(sql, database):
     table = re.search(r'delete from\s*([\w|_]*)', sql).group(1).strip()
     message = trans_pb2.deleteMess()
+    message.sql = sql.strip()
     message.command = 'delete'
     message.database = database
     message.table = table
@@ -109,25 +111,28 @@ def deleteAnaly(sql, database):
         whereAnaly(sql, message)
     send(message)
 
+
 def createTableAnaly(sql, database):
     table = re.search(r'\s*([^\s]*)\s*\(', sql).group(1).strip()
     table = format_str(table)
     message = trans_pb2.createTableMess()
+    message.sql = sql.strip()
     message.command = 'create table'
     message.database = database
     message.table = table
 
-    attributes = re.search(r'\((.*)\)', sql, re.S).group(1)
-    attributes = attributes.split(',\n')
-    for i in attributes:
-        i = i.strip()
-        message.defines.append(i)
+    # attributes = re.search(r'\((.*)\)', sql, re.S).group(1)
+    # attributes = attributes.split(',\n')
+    # for i in attributes:
+    #     i = i.strip()
+    #     message.defines.append(i)
     send(message)
 
 
 def dropTableAnaly(sql, database):
     table = re.search(r'drop table\s*([\w|_]*)', sql).group(1).strip()
     message = trans_pb2.dropTableMess()
+    message.sql = sql.strip()
     message.command = 'drop table'
     message.database = database
     message.table = table
@@ -136,15 +141,16 @@ def dropTableAnaly(sql, database):
 
 def analy(database, sql):
     database = database.split(' ')
-    sql = sql.lower()
     if len(database) == 3:
         db_name = database[2]
         if database[0] == 'create':
             message = trans_pb2.createDBMess()
+            message.sql = sql.strip()
             message.command = 'create database'
             message.database = db_name
         elif database[0] == 'drop':
             message = trans_pb2.dropDBMess()
+            message.sql = sql.strip()
             message.command = 'drop database'
             message.database = db_name
         send(message)
@@ -161,6 +167,5 @@ def analy(database, sql):
             createTableAnaly(sql, db_name)
         elif command == 'drop':
             dropTableAnaly(sql, db_name)
-
 
 

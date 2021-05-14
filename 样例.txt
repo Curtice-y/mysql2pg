@@ -12,12 +12,21 @@ create table if not exists `tt` (
          )engine=InnoDB default charset=utf8;
 
 insert into tt(`name`,`sex`,`age`,`classid`) 
-values ('yiyi','w',20,'cls1'),('xiaoer','m',22,'cls3');
+values ('yiyi','w',20,'cls1');
+
+insert into tt(`name`,`sex`,`age`,`classid`) 
+values ('xiaoer','m',22,'cls3');
 
 insert into tt
-values (3,'zhangsan','w',21,'cls5'),(4,'lisi','m',20,'cls4'),(5,'wangwu','w',26,'cls6');
+values (3,'zhangsan','w',21,'cls5');
 
-update tt set name='李四' where id=4;
+insert into tt
+values (4,'lisi','m',20,'cls4');
+
+insert into tt
+values (5,'wangwu','w',26,'cls6');
+
+update tt set name='llll' where id=1;
 
 delete from tt where name='yiyi';
 

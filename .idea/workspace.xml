@@ -4,6 +4,9 @@
     <list default="true" id="d8e9b921-78cb-4bc4-9121-c57f0fc832af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/protolbuf.py" beforeDir="false" afterPath="$PROJECT_DIR$/protolbuf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trans.proto" beforeDir="false" afterPath="$PROJECT_DIR$/trans.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trans_pb2.py" beforeDir="false" afterPath="$PROJECT_DIR$/trans_pb2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/样例.txt" beforeDir="false" afterPath="$PROJECT_DIR$/样例.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +130,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620869193153</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="finish the analysis of sql statement">
+      <created>1620869313634</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1620869313634</updated>
+    </task>
+    <task id="LOCAL-00006" summary="finish the analysis of sql statement">
+      <created>1620869421290</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1620869421290</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

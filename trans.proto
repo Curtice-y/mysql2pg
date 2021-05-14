@@ -6,17 +6,19 @@ message key_value{
 }
 
 message insertMess{
-    string command = 1;
-    string database = 2;
-    string table = 3;
-    repeated string values= 4;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
+    string table = 4;
+    repeated string values= 5;
 }
 
 message insertMessWithAttr{
-    string command = 1;
-    string database = 2;
-    string table = 3;
-    repeated key_value attribute = 4;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
+    string table = 4;
+    repeated key_value attribute = 5;
 }
 
 message condition{
@@ -31,40 +33,46 @@ message where{
 }
 
 message updateMess{
-    string command = 1;
-    string database = 2;
-    string table = 3;
-    repeated key_value attribute = 4;
-    where where = 5;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
+    string table = 4;
+    repeated key_value attribute = 5;
+    where where = 6;
 }
 
 message deleteMess{
-    string command = 1;
-    string database = 2;
-    string table = 3;
-    where where = 4; 
+    string sql = 1;
+    string command = 2;
+    string database = 3;
+    string table = 4;
+    where where = 5; 
 }
 
 
 message createTableMess{
-    string command = 1;
-    string database = 2;
-    string table = 3;
-    repeated string defines= 4;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
+    string table = 4;
+    repeated string defines= 5;
 }
 
 message createDBMess{
-    string command = 1;
-    string database = 2;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
 }
 
 message dropTableMess{
-    string command = 1;
-    string database = 2;
-    repeated string table = 3;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
+    string table = 4;
 }
 
 message dropDBMess{
-    string command = 1;
-    string database = 2;
+    string sql = 1;
+    string command = 2;
+    string database = 3;
 }
