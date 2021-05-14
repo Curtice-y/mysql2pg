@@ -22,7 +22,6 @@ class Binlog2sql(object):
         self.binlogList = []
         self.connection = pymysql.connect(**self.conn_setting)
 
-        lock = threading.Lock()
         self.databaseList = []
         self.sqlListHis = []
         self.current = []

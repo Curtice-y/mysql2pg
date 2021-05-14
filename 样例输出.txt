@@ -1,16 +1,12 @@
 command: "create database"
 database: "test"
 
+sql: "create table if not exists `tt` (\n          `id` int(10) unsigned not null auto_increment,\n          `name` varchar(16) not null,\n          `sex` enum(\'m\',\'w\') not null default \'m\',\n          `age` tinyint(3) unsigned not null,\n          `classid` char(6) default null,\n          primary key (`id`)\n         )engine=InnoDB default charset=utf8"
 command: "create table"
 database: "`test`"
 table: "tt"
-defines: "`id` int(10) unsigned not null auto_increment"
-defines: "`name` varchar(16) not null"
-defines: "`sex` enum(\'m\',\'w\') not null default \'m\'"
-defines: "`age` tinyint(3) unsigned not null"
-defines: "`classid` char(6) default null"
-defines: "primary key (`id`)"
 
+sql: "insert into tt(`name`,`sex`,`age`,`classid`) \nvalues (\'yiyi\',\'w\',20,\'cls1\')"
 command: "insertAttr"
 database: "`test`"
 table: "tt"
@@ -31,6 +27,7 @@ attribute {
   value: "cls1"
 }
 
+sql: "insert into tt(`name`,`sex`,`age`,`classid`) \nvalues (\'xiaoer\',\'m\',22,\'cls3\')"
 command: "insertAttr"
 database: "`test`"
 table: "tt"
@@ -51,6 +48,7 @@ attribute {
   value: "cls3"
 }
 
+sql: "insert into tt\nvalues (3,\'zhangsan\',\'w\',21,\'cls5\')"
 command: "insert"
 database: "`test`"
 table: "tt"
@@ -60,6 +58,7 @@ values: "w"
 values: "21"
 values: "cls5"
 
+sql: "insert into tt\nvalues (4,\'lisi\',\'m\',20,\'cls4\')"
 command: "insert"
 database: "`test`"
 table: "tt"
@@ -69,6 +68,7 @@ values: "m"
 values: "20"
 values: "cls4"
 
+sql: "insert into tt\nvalues (5,\'wangwu\',\'w\',26,\'cls6\')"
 command: "insert"
 database: "`test`"
 table: "tt"
@@ -78,20 +78,23 @@ values: "w"
 values: "26"
 values: "cls6"
 
+sql: "update tt set name=\'llll\' where id=1"
 command: "update"
 database: "`test`"
 table: "tt"
 attribute {
   key: "name"
+  value: "llll"
 }
 where {
   limits {
     left: "id"
     operand: "="
-    right: "4"
+    right: "1"
   }
 }
 
+sql: "delete from tt where name=\'yiyi\'"
 command: "delete"
 database: "`test`"
 table: "tt"
@@ -102,9 +105,6 @@ where {
     right: "yiyi"
   }
 }
-
-command: "drop table"
-database: "`test`"
 
 command: "drop database"
 database: "test"
