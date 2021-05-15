@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8e9b921-78cb-4bc4-9121-c57f0fc832af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="d8e9b921-78cb-4bc4-9121-c57f0fc832af" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620958422253</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update main.py">
+      <created>1621082075393</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1621082075393</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,6 +179,7 @@
     <MESSAGE value="debug of the sqlList" />
     <MESSAGE value="finish the analysis of sql statement" />
     <MESSAGE value="update the testcase and the analysis of testcase" />
-    <option name="LAST_COMMIT_MESSAGE" value="update the testcase and the analysis of testcase" />
+    <MESSAGE value="update main.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="update main.py" />
   </component>
 </project>

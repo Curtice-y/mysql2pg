@@ -100,14 +100,14 @@ class Binlog2sql(object):
                 # print(query_)
                 if query_[0] in allow_sql:
                     self.current.append(binlog_events.query)
-                print(self.current)
+                #print(self.current)
             # 读取到最后一个事件
             #if stream.log_file == self.end_file and stream.log_pos == self.eof_pos:
                 #last_events = True
             # 不退出循环表示获取实时mysql语句
             if last_events == True: break
         stream.close()
-        # print(self.current)
+        print(self.current)
 
 
 
