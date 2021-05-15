@@ -102,12 +102,12 @@ class Binlog2sql(object):
                     self.current.append(binlog_events.query)
                 print(self.current)
             # 读取到最后一个事件
-            if stream.log_file == self.end_file and stream.log_pos == self.eof_pos:
-                last_events = True
+            #if stream.log_file == self.end_file and stream.log_pos == self.eof_pos:
+                #last_events = True
             # 不退出循环表示获取实时mysql语句
-            # if last_events == True: break
+            if last_events == True: break
         stream.close()
-        print(self.current)
+        # print(self.current)
 
 
 
@@ -141,4 +141,4 @@ if __name__ == '__main__':
     # 创建Binlog2sql对象 self.__init__()中完成历史mysql提取
     binlog2sql = Binlog2sql(connection_settings=conn_setting, start_file=args.start_file, end_file=args.end_file)
     # 实时获取mysql
-    # binlog2sql.process_binlog()
+    binlog2sql.process_binlog()
